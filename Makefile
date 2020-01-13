@@ -76,7 +76,7 @@ build: build-make-newlib build-make-newlib-32 build-make-linux-multilib build-ma
 .PHONY: tool-chain
 tool-chain:
 	docker build ./bin -t ${TOOL}
-	#docker push ${TOOL}
+	docker push ${TOOL}
 
 
 

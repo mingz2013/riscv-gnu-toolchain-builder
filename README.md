@@ -11,7 +11,7 @@ riscv-gnu-toolchains
 
 
 ## use
-`docker run -it mingz2013/riscv-gnu-toolchain-builder:1.0 riscv64-unknown-elf-gcc hello.c -o hello`
+`docker run --rm -v "$PWD"/app:/usr/src/myapp -w /usr/src/myapp mingz2013/riscv-gnu-toolchain:1.0 /riscv/bin/riscv64-unknown-elf-gcc -o myapp hello.c`
 
 
 # reference
