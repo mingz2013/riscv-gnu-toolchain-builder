@@ -6,15 +6,16 @@ help:
 	@echo 'Usage:                                                                    '
 	@echo '   make help                           show help                          '
 	@echo '                                                                          '
-	@echo '   make up                             启动服务                            '
-	@echo '   make down                           停止服务                            '
-	@echo '   make logs                           查看日志                            '
+	@echo '   make builder                        builder image                      '
+	@echo '   make copy                           copy                               '
+	@echo '   make tool-chains                    tool chains image                  '
 	@echo '                                                                          '
 	@echo '                                                                          '
 
 
 BUILDER := mingz2013/riscv-gnu-toolchains-builder:1.0
 TOOL := mingz2013/riscv-gnu-toolchains:1.0
+
 .PHONY: builder
 builder:
 	docker build ./builder -t ${BUILDER}
