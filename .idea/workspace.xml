@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b77b2381-f190-46d9-9347-7d4b8b743afe" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/builder-1/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/builder/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/builder/Dockerfile" afterDir="false" />
@@ -27,7 +28,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/builder-2" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -36,6 +37,9 @@
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/builder-2" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/builder" />
@@ -65,6 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578892892464</updated>
       <workItem from="1578892899515" duration="5936000" />
+      <workItem from="1578927235583" duration="2321000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile">
       <created>1578893355031</created>
@@ -105,10 +110,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="dockerfile" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="303" y="52" key="CommitChangelistDialog2" timestamp="1578923464822">
+    <state x="303" y="52" key="CommitChangelistDialog2" timestamp="1578924324856">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="303" y="52" key="CommitChangelistDialog2/683.-1080.1920.1080/-1237.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1578923464822" />
+    <state x="303" y="52" key="CommitChangelistDialog2/683.-1080.1920.1080/-1237.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1578924324856" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1578895044916">
       <screen x="67" y="23" width="1373" height="877" />
     </state>
@@ -118,9 +123,9 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="480" y="168" key="RollbackChangesDialog/683.-1080.1920.1080/-1237.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1578894926131" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1578923475008">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1578924356485">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2/683.-1080.1920.1080/-1237.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1578923475008" />
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/683.-1080.1920.1080/-1237.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1578924356485" />
   </component>
 </project>
