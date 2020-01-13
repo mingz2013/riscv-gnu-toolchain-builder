@@ -35,4 +35,4 @@ RUN ./configure --prefix=$RISCV --disable-linux --with-arch=rv32ima # or --with-
 RUN make newlib
 RUN make report-newlib
 
-ENTRYPOINT ["/bin/bash"]
+# ENTRYPOINT ["/bin/bash"]

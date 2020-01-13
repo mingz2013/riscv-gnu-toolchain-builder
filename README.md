@@ -6,6 +6,7 @@ riscv-gnu-toolchains
 ## build tool chains
 
 - `make git-clone`
+- `make builder`
 - `make tool-chain`
 
 

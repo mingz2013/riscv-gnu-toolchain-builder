@@ -3,9 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="b77b2381-f190-46d9-9347-7d4b8b743afe" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/builder/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/builder/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/builder-1/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/builder.bak/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yaml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +71,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578892892464</updated>
       <workItem from="1578892899515" duration="5936000" />
-      <workItem from="1578927235583" duration="5177000" />
+      <workItem from="1578927235583" duration="6179000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile">
       <created>1578893355031</created>
@@ -99,7 +101,14 @@
       <option name="project" value="LOCAL" />
       <updated>1578923464966</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="dockerfile">
+      <created>1578934663082</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1578934663082</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -110,9 +119,10 @@
     <option name="LAST_COMMIT_MESSAGE" value="dockerfile" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="303" y="52" key="CommitChangelistDialog2" timestamp="1578924324856">
+    <state x="303" y="52" key="CommitChangelistDialog2" timestamp="1578934662796">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="303" y="52" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1578934662796" />
     <state x="303" y="52" key="CommitChangelistDialog2/683.-1080.1920.1080/-1237.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1578924324856" />
     <state x="100" y="100" width="1240" height="700" key="DiffContextDialog" timestamp="1578895044916">
       <screen x="67" y="23" width="1373" height="877" />
@@ -123,9 +133,10 @@
       <screen x="0" y="0" width="1440" height="900" />
     </state>
     <state x="480" y="168" key="RollbackChangesDialog/683.-1080.1920.1080/-1237.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1578894926131" />
-    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1578924356485">
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2" timestamp="1578934676350">
       <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="320" y="190" key="Vcs.Push.Dialog.v2/0.0.1440.900@0.0.1440.900" timestamp="1578934676350" />
     <state x="320" y="190" key="Vcs.Push.Dialog.v2/683.-1080.1920.1080/-1237.-1080.1920.1080/0.0.1440.900@0.0.1440.900" timestamp="1578924356485" />
   </component>
 </project>
