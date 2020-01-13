@@ -6,4 +6,4 @@ RUN yum install make file -y
 
 WORKDIR /riscv-gnu-toolchain
 
-ENTRYPOINT ["/bin/bash"]
+# ENTRYPOINT ["/bin/bash"]

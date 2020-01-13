@@ -3,9 +3,14 @@ riscv-gnu-toolchains
 
 
 
-# build tool chains
+## build tool chains
+
+- `make git-clone`
+- `make tool-chain`
 
 
+## use
+`docker run -it mingz2013/riscv-gnu-toolchain-builder:1.0 riscv64-unknown-elf-gcc hello.c -o hello`
 
 
 # reference

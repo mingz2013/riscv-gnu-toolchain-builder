@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b77b2381-f190-46d9-9347-7d4b8b743afe" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/builder-1/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/builder/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/builder/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +69,7 @@
       <option name="presentableId" value="Default" />
       <updated>1578892892464</updated>
       <workItem from="1578892899515" duration="5936000" />
-      <workItem from="1578927235583" duration="2321000" />
+      <workItem from="1578927235583" duration="5177000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile">
       <created>1578893355031</created>
