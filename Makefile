@@ -8,13 +8,13 @@ help:
 	@echo '                                                                          '
 	@echo '   make builder                        builder image                      '
 	@echo '   make copy                           copy                               '
-	@echo '   make tool-chains                    tool chains image                  '
+	@echo '   make tool-chain                    tool chain image                  '
 	@echo '                                                                          '
 	@echo '                                                                          '
 
 
-BUILDER := mingz2013/riscv-gnu-toolchains-builder:1.0
-TOOL := mingz2013/riscv-gnu-toolchains:1.0
+BUILDER := mingz2013/riscv-gnu-toolchain-builder:1.0
+TOOL := mingz2013/riscv-gnu-toolchain:1.0
 
 .PHONY: builder
 builder:
@@ -27,7 +27,7 @@ copy: builder
 	docker run -i -t  -v./riscv:/riscv ${BUILDER} /bin/bash copy /opt/riscv /riscv -r
 
 
-.PHONY: tool-chains
-tool-chains: copy
+.PHONY: tool-chain
+tool-chain: copy
 	docker build . -t ${TOOL}
 	docker pull ${TOOL}
