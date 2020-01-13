@@ -1,12 +1,13 @@
 .PHONY: help
 help:
 	@echo '                                                                          '
-	@echo 'Makefile for riscv doc                                                  '
+	@echo 'Makefile for riscv doc                                                    '
 	@echo '                                                                          '
 	@echo 'Usage:                                                                    '
 	@echo '   make help                           show help                          '
 	@echo '                                                                          '
 	@echo '   make git-clone                     clone source                        '
+	@echo '   make builder                       builder image                       '
 	@echo '   make tool-chain                    tool chain image                    '
 	@echo '                                                                          '
 	@echo '                                                                          '
@@ -17,7 +18,7 @@ TOOL := mingz2013/riscv-gnu-toolchain:1.0
 
 BASEDIR=$(CURDIR)
 
-RISCV := $(BASEDIR)/riscv
+RISCV := $(BASEDIR)/bin/riscv
 RISCV-SRC := $(BASEDIR)/src/riscv-gnu-toolchain
 
 RISCV-IN := /opt/riscv
@@ -73,9 +74,9 @@ build: build-make-newlib build-make-newlib-32 build-make-linux-multilib build-ma
 
 
 .PHONY: tool-chain
-tool-chain: build
-	docker build . -t ${TOOL}
-	docker push ${TOOL}
+tool-chain:
+	docker build ./bin -t ${TOOL}
+	#docker push ${TOOL}
 
 
 
