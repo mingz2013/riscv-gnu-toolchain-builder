@@ -8,6 +8,7 @@ riscv-gnu-toolchains
 - `make git-clone`
 - `make builder`
 - `make tool-chain`
+- `make build` # build all
 
 
 ## use
