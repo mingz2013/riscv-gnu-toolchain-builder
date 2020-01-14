@@ -24,7 +24,7 @@ RISCV-SRC := $(BASEDIR)/src/riscv-gnu-toolchain
 RISCV-IN := /opt/riscv
 RISCV-SRC-IN := /riscv-gnu-toolchain
 
-RISCV-BUILD-DIR = $(RISCV-SRC)/build
+#RISCV-BUILD-DIR = $(RISCV-SRC)/build
 
 DOCKER-RUN := docker run --rm -i -t -v${RISCV}:${RISCV-IN} -v${RISCV-SRC}:${RISCV-SRC-IN} ${BUILDER}
 
@@ -41,23 +41,29 @@ builder:
 
 .PHONY: build-make-newlib-32
 build-make-newlib-32:
-	rm -r RISCV-BUILD-DIR
+	#rm -r ${RISCV-BUILD-DIR}
 	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imacfd --with-abi=ilp32d
 	${DOCKER-RUN} make
 	#${DOCKER-RUN} make report-newlib
 
 .PHONY: build-make-newlib-64
 build-make-newlib-64:
-	rm -r RISCV-BUILD-DIR
+	#rm -r ${RISCV-BUILD-DIR}
 	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN}
 	${DOCKER-RUN} make
 	#${DOCKER-RUN} make report-newlib
 
+.PHONY: build-make-newlib-multilib
+build-make-newlib-multilib:
+	#rm -r ${RISCV-BUILD-DIR}
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --enable-multilib
+	${DOCKER-RUN} make
+	#${DOCKER-RUN} make report-newlib
 
 .PHONY: build-make-linux-32
 build-make-linux-32:
-	rm -r RISCV-BUILD-DIR
-	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32gc --with-abi=ilp32d
+	#rm -r ${RISCV-BUILD-DIR}
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imacgfd --with-abi=ilp32d
 	${DOCKER-RUN} make linux
 	#${DOCKER-RUN} make report-linux
 
@@ -65,7 +71,7 @@ build-make-linux-32:
 
 .PHONY: build-make-linux-64
 build-make-linux-64:
-	rm -r RISCV-BUILD-DIR
+	#rm -r ${RISCV-BUILD-DIR}
 	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN}
 	${DOCKER-RUN} make linux
 	#${DOCKER-RUN} make report-linux
@@ -75,14 +81,14 @@ build-make-linux-64:
 
 .PHONY: build-make-linux-multilib
 build-make-linux-multilib:
-	rm -r RISCV-BUILD-DIR
+	#rm -r ${RISCV-BUILD-DIR}
 	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --enable-multilib
 	${DOCKER-RUN} make linux
 	#${DOCKER-RUN} make report-linux
 
 
 .PHONY: build
-build:  build-make-newlib-32 build-make-newlib-64  build-make-linux-32 build-make-linux-64  build-make-linux-multilib
+build:  build-make-newlib-32 build-make-newlib-64  build-make-newlib-multilib build-make-linux-32 build-make-linux-64  build-make-linux-multilib
 
 
 .PHONY: tool-chain
