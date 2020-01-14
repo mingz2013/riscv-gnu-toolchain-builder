@@ -39,62 +39,68 @@ builder:
 	docker build ./builder -t ${BUILDER}
 	docker push ${BUILDER}
 
+
+.PHONY
+rm-build:
+	rm -r ${RISCV-BUILD-DIR}
+
 .PHONY: build-make-newlib-32
 build-make-newlib-32:
-	#rm -r ${RISCV-BUILD-DIR}
-	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imacfd --with-abi=ilp32d
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imacd --with-abi=ilp32d
 	${DOCKER-RUN} make
 	#${DOCKER-RUN} make report-newlib
+	rm -r ${RISCV-BUILD-DIR}
 
 .PHONY: build-make-newlib-64
 build-make-newlib-64:
-	#rm -r ${RISCV-BUILD-DIR}
 	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN}
 	${DOCKER-RUN} make
 	#${DOCKER-RUN} make report-newlib
+	rm -r ${RISCV-BUILD-DIR}
 
 .PHONY: build-make-newlib-multilib
 build-make-newlib-multilib:
-	#rm -r ${RISCV-BUILD-DIR}
 	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --enable-multilib
 	${DOCKER-RUN} make
 	#${DOCKER-RUN} make report-newlib
+	rm -r ${RISCV-BUILD-DIR}
 
 .PHONY: build-make-linux-32
 build-make-linux-32:
-	#rm -r ${RISCV-BUILD-DIR}
-	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imacgfd --with-abi=ilp32d
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imacd --with-abi=ilp32d
 	${DOCKER-RUN} make linux
 	#${DOCKER-RUN} make report-linux
-
+	rm -r ${RISCV-BUILD-DIR}
 
 
 .PHONY: build-make-linux-64
 build-make-linux-64:
-	#rm -r ${RISCV-BUILD-DIR}
 	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN}
 	${DOCKER-RUN} make linux
 	#${DOCKER-RUN} make report-linux
-
-
+	rm -r ${RISCV-BUILD-DIR}
 
 
 .PHONY: build-make-linux-multilib
 build-make-linux-multilib:
-	#rm -r ${RISCV-BUILD-DIR}
 	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --enable-multilib
 	${DOCKER-RUN} make linux
 	#${DOCKER-RUN} make report-linux
+	rm -r ${RISCV-BUILD-DIR}
 
-
-.PHONY: build
-build:  build-make-newlib-32 build-make-newlib-64  build-make-newlib-multilib build-make-linux-32 build-make-linux-64  build-make-linux-multilib
+.PHONY: build-tool-chain
+build-tool-chain:  build-make-newlib-32 build-make-newlib-64  build-make-newlib-multilib build-make-linux-32 build-make-linux-64  build-make-linux-multilib
 
 
 .PHONY: tool-chain
-tool-chain: build
+tool-chain: build-tool-chain
 	docker build ./bin -t ${TOOL}
 	docker push ${TOOL}
 
 
+.PHONY: build-hello
+build-hello:
+	docker run --rm -v "$PWD"/app:/app -w /app ${TOOL} /riscv/bin/riscv64-unknown-elf-gcc -o hello hello.c
 
+.PHONY: build
+build: git-clone builder tool-chain build-hello
