@@ -9,6 +9,7 @@ help:
 	@echo '   make git-clone                     clone source                        '
 	@echo '   make builder                       builder image                       '
 	@echo '   make tool-chain                    tool chain image                    '
+	@echo '   make build                         build all                           '
 	@echo '                                                                          '
 	@echo '                                                                          '
 
@@ -40,7 +41,7 @@ builder:
 	docker push ${BUILDER}
 
 
-.PHONY
+.PHONY: rm-build
 rm-build:
 	rm -r ${RISCV-BUILD-DIR}
 
