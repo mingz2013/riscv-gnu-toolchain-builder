@@ -24,8 +24,9 @@ RISCV-SRC := $(BASEDIR)/src/riscv-gnu-toolchain
 RISCV-IN := /opt/riscv
 RISCV-SRC-IN := /riscv-gnu-toolchain
 
+RISCV-BUILD-DIR = $(RISCV-SRC)/build
 
-DOCKER-RUN := docker run -i -t -v${RISCV}:${RISCV-IN} -v${RISCV-SRC}:${RISCV-SRC-IN} ${BUILDER}
+DOCKER-RUN := docker run --rm -i -t -v${RISCV}:${RISCV-IN} -v${RISCV-SRC}:${RISCV-SRC-IN} ${BUILDER}
 
 .PHONY: git-clone
 git-clone:
@@ -36,45 +37,56 @@ git-clone:
 .PHONY: builder
 builder:
 	docker build ./builder -t ${BUILDER}
-	docker push ${BUILDER}
+	#docker push ${BUILDER}
 
-.PHONY: build-make-newlib
-build-make-newlib:
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} && ${DOCKER-RUN} make
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} && ${DOCKER-RUN} make report-newlib
+.PHONY: build-make-newlib-32
+build-make-newlib-32:
+	rm -r RISCV-BUILD-DIR
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imacfd --with-abi=ilp32d
+	${DOCKER-RUN} make
+	#${DOCKER-RUN} make report-newlib
 
-.PHONY: build-make-linux
-build-make-linux:
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} && ${DOCKER-RUN} make linux
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} && ${DOCKER-RUN} make report-linux
+.PHONY: build-make-newlib-64
+build-make-newlib-64:
+	rm -r RISCV-BUILD-DIR
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN}
+	${DOCKER-RUN} make
+	#${DOCKER-RUN} make report-newlib
 
 
 .PHONY: build-make-linux-32
 build-make-linux-32:
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} --with-arch=rv32gc --with-abi=ilp32d && ${DOCKER-RUN} make linux
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} --with-arch=rv32gc --with-abi=ilp32d && ${DOCKER-RUN} make report-linux
+	rm -r RISCV-BUILD-DIR
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32gc --with-abi=ilp32d
+	${DOCKER-RUN} make linux
+	#${DOCKER-RUN} make report-linux
+
+
+
+.PHONY: build-make-linux-64
+build-make-linux-64:
+	rm -r RISCV-BUILD-DIR
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN}
+	${DOCKER-RUN} make linux
+	#${DOCKER-RUN} make report-linux
+
+
+
 
 .PHONY: build-make-linux-multilib
 build-make-linux-multilib:
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} --enable-multilib && ${DOCKER-RUN} make linux
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} --enable-multilib && ${DOCKER-RUN} make report-linux
+	rm -r RISCV-BUILD-DIR
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --enable-multilib
+	${DOCKER-RUN} make linux
+	#${DOCKER-RUN} make report-linux
 
-.PHONY: build-make-newlib-64
-build-make-newlib-64:
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} --disable-linux --with-arch=rv64ima && ${DOCKER-RUN} make newlib
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} --disable-linux --with-arch=rv64ima && ${DOCKER-RUN} make report-newlib
-
-.PHONY: build-make-newlib-32
-build-make-newlib-32:
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} --disable-linux --with-arch=rv32ima && ${DOCKER-RUN} make newlib
-	${DOCKER-RUN} ./configure --prefix=${RISCV-IN} --disable-linux --with-arch=rv32ima && ${DOCKER-RUN} make report-newlib
 
 .PHONY: build
-build: build-make-newlib build-make-newlib-32 build-make-linux-multilib build-make-linux-32
+build:  build-make-newlib-32 build-make-newlib-64  build-make-linux-32 build-make-linux-64  build-make-linux-multilib
 
 
 .PHONY: tool-chain
-tool-chain:
+tool-chain: build
 	docker build ./bin -t ${TOOL}
 	docker push ${TOOL}
 
