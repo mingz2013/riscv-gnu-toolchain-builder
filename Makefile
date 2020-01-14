@@ -37,7 +37,7 @@ git-clone:
 .PHONY: builder
 builder:
 	docker build ./builder -t ${BUILDER}
-	#docker push ${BUILDER}
+	docker push ${BUILDER}
 
 .PHONY: build-make-newlib-32
 build-make-newlib-32:
