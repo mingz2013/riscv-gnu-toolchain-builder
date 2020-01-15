@@ -38,14 +38,14 @@ git-clone:
 .PHONY: builder
 builder:
 	docker build ./builder -t ${BUILDER}
-	docker push ${BUILDER}
+	#docker push ${BUILDER}
 
 
 .PHONY: build-make-multilib
 build-make-multilib:
 	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --enable-multilib
 	${DOCKER-RUN} make
-	${DOCKER-RUN} make linux
+	#${DOCKER-RUN} make linux
 	#${DOCKER-RUN} make report-newlib
 	#rm -r ${RISCV-BUILD-DIR}
 
@@ -53,7 +53,7 @@ build-make-multilib:
 .PHONY: build-tool-chain
 build-tool-chain: build-make-multilib
 	docker build ./bin -t ${TOOL}
-	docker push ${TOOL}
+	#docker push ${TOOL}
 
 
 .PHONY: build-hello
