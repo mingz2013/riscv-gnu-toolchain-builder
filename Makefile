@@ -47,7 +47,7 @@ rm-build:
 
 .PHONY: build-make-newlib-32
 build-make-newlib-32:
-	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imacd --with-abi=ilp32d
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imac --with-abi=ilp32d
 	${DOCKER-RUN} make
 	#${DOCKER-RUN} make report-newlib
 	rm -r ${RISCV-BUILD-DIR}
@@ -68,7 +68,7 @@ build-make-newlib-multilib:
 
 .PHONY: build-make-linux-32
 build-make-linux-32:
-	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imacd --with-abi=ilp32d
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imac --with-abi=ilp32d
 	${DOCKER-RUN} make linux
 	#${DOCKER-RUN} make report-linux
 	rm -r ${RISCV-BUILD-DIR}
