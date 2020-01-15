@@ -47,7 +47,7 @@ rm-build:
 
 .PHONY: build-make-newlib-32
 build-make-newlib-32:
-	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imac --with-abi=ilp32d
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32gc --with-abi=ilp32d
 	${DOCKER-RUN} make
 	#${DOCKER-RUN} make report-newlib
 	rm -r ${RISCV-BUILD-DIR}
@@ -68,7 +68,7 @@ build-make-newlib-multilib:
 
 .PHONY: build-make-linux-32
 build-make-linux-32:
-	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32imac --with-abi=ilp32d
+	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --with-arch=rv32gc --with-abi=ilp32d
 	${DOCKER-RUN} make linux
 	#${DOCKER-RUN} make report-linux
 	rm -r ${RISCV-BUILD-DIR}
@@ -90,7 +90,10 @@ build-make-linux-multilib:
 	rm -r ${RISCV-BUILD-DIR}
 
 .PHONY: build-tool-chain
-build-tool-chain:  build-make-newlib-32 build-make-newlib-64  build-make-newlib-multilib build-make-linux-32 build-make-linux-64  build-make-linux-multilib
+build-tool-chain:   build-make-newlib-multilib build-make-linux-multilib
+
+.PHONY: build-tool-chain-2
+build-tool-chain-2:   build-make-newlib-multilib build-make-linux-multilib  build-make-linux-32 build-make-linux-64  build-make-newlib-32 build-make-newlib-64
 
 
 .PHONY: tool-chain
@@ -101,7 +104,7 @@ tool-chain: build-tool-chain
 
 .PHONY: build-hello
 build-hello:
-	docker run --rm -v "$PWD"/app:/app -w /app ${TOOL} /riscv/bin/riscv64-unknown-elf-gcc -o hello hello.c
+	docker run --rm -v $(BASEDIR)/app:/app -w /app ${TOOL} /riscv/bin/riscv64-unknown-elf-gcc -o hello hello.c
 
 .PHONY: build
 build: git-clone builder tool-chain build-hello
