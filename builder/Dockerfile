@@ -12,7 +12,9 @@ RUN curl -O http://ftp.gnu.org/gnu/make/make-4.2.1.tar.gz && \
     ./configure && \
     make && \
     make install && \
-    make -v
+    make -v && \
+    ln -s /usr/local/bin/make /usr/local/bin/gmake && \
+    ln -s /usr/local/bin/make /usr/local/bin/gnumake
 
 WORKDIR /riscv-gnu-toolchain/build
 

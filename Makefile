@@ -8,7 +8,7 @@ help:
 	@echo '                                                                          '
 	@echo '   make git-clone                     clone source                        '
 	@echo '   make builder                       builder image                       '
-	@echo '   make tool-chain                    tool chain image                    '
+	@echo '   make build-tool-chain                    tool chain image                    '
 	@echo '   make build                         build all                           '
 	@echo '                                                                          '
 	@echo '                                                                          '
@@ -27,7 +27,7 @@ RISCV-SRC-IN := /riscv-gnu-toolchain
 
 RISCV-BUILD-DIR = $(RISCV-SRC)/build
 
-DOCKER-RUN := docker run --rm -i -t -v${RISCV}:${RISCV-IN} -v${RISCV-SRC}:${RISCV-SRC-IN} ${BUILDER}
+DOCKER-BUILDER-RUN := docker run --rm -i -t -v${RISCV}:${RISCV-IN} -v${RISCV-SRC}:${RISCV-SRC-IN} ${BUILDER}
 
 .PHONY: git-clone
 git-clone:
@@ -38,15 +38,15 @@ git-clone:
 .PHONY: builder
 builder:
 	docker build ./builder -t ${BUILDER}
-	#docker push ${BUILDER}
+	docker push ${BUILDER}
 
 
 .PHONY: build-make-multilib
 build-make-multilib:
-	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --enable-multilib
-	${DOCKER-RUN} make
-	${DOCKER-RUN} make linux
-	#${DOCKER-RUN} make report-newlib
+	${DOCKER-BUILDER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --enable-multilib
+	${DOCKER-BUILDER-RUN} make
+	${DOCKER-BUILDER-RUN} make linux
+	#${DOCKER-BUILDER-RUN} make report-newlib
 	#rm -r ${RISCV-BUILD-DIR}
 
 
