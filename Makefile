@@ -25,9 +25,9 @@ RISCV-SRC := $(BASEDIR)/src/riscv-gnu-toolchain
 RISCV-IN := /opt/riscv
 RISCV-SRC-IN := /riscv-gnu-toolchain
 
-#RISCV-BUILD-DIR = $(RISCV-SRC)/build
+RISCV-BUILD-DIR = $(RISCV-SRC)/build
 
-DOCKER-RUN := docker run -i -t -v${RISCV}:${RISCV-IN} -v${RISCV-SRC}:${RISCV-SRC-IN} ${BUILDER}
+DOCKER-RUN := docker run --rm -i -t -v${RISCV}:${RISCV-IN} -v${RISCV-SRC}:${RISCV-SRC-IN} ${BUILDER}
 
 .PHONY: git-clone
 git-clone:
@@ -45,7 +45,7 @@ builder:
 build-make-multilib:
 	${DOCKER-RUN} ${RISCV-SRC-IN}/configure --prefix=${RISCV-IN} --enable-multilib
 	${DOCKER-RUN} make
-	#${DOCKER-RUN} make linux
+	${DOCKER-RUN} make linux
 	#${DOCKER-RUN} make report-newlib
 	#rm -r ${RISCV-BUILD-DIR}
 
