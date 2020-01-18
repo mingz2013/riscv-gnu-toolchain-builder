@@ -21,7 +21,8 @@ This process will start by downloading about 200 MiB of upstream sources, then w
 
 
 ## use
-`docker run --rm -v "$PWD"/app:/usr/src/myapp -w /usr/src/myapp mingz2013/riscv-gnu-toolchain:1.0 /riscv/bin/riscv64-unknown-elf-gcc -o myapp hello.c`
+- `docker pull mingz2013/riscv-gnu-toolchain`
+- `docker run --rm -v "$PWD"/app:/usr/src/myapp -w /usr/src/myapp mingz2013/riscv-gnu-toolchain /riscv/bin/riscv64-unknown-elf-gcc -o myapp hello.c`
 
 
 # reference

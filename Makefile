@@ -14,8 +14,8 @@ help:
 	@echo '                                                                          '
 
 
-BUILDER := mingz2013/riscv-gnu-toolchain-builder:1.0
-TOOL := mingz2013/riscv-gnu-toolchain:1.0
+BUILDER := mingz2013/riscv-gnu-toolchain-builder
+TOOL := mingz2013/riscv-gnu-toolchain
 
 BASEDIR=$(CURDIR)
 
@@ -50,10 +50,10 @@ build-make-multilib:
 	#rm -r ${RISCV-BUILD-DIR}
 
 
-.PHONY: build-tool-chain
-build-tool-chain: build-make-multilib
+.PHONY: tool-chain
+tool-chain:
 	docker build ./bin -t ${TOOL}
-	#docker push ${TOOL}
+	docker push ${TOOL}
 
 
 .PHONY: build-hello
@@ -61,4 +61,4 @@ build-hello:
 	docker run --rm -v $(BASEDIR)/app:/app -w /app ${TOOL} /riscv/bin/riscv64-unknown-elf-gcc -o hello hello.c
 
 .PHONY: build
-build: git-clone builder build-tool-chain build-hello
+build: git-clone builder build-make-multilib tool-chain build-hello
